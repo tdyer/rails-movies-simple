@@ -237,6 +237,53 @@ end
   get '/movies', to: 'movies#index'
 ```
 
+**Lets render an HTML representation of all the movies**
+
+```ruby
+# GET /movies
+def index
+  @movies = Movie.all
+  content = '<html><body><ul>'
+
+  @movies.each do |movie|
+    content << "<li>#{movie.name} is #{movie.length} minutes long</li>"
+  end
+
+  content << '</ul></body></html>'
+
+  render inline: content
+end
+
+```
+
+**Finally Let's use a View to generate the HTML representation**.
+
+```ruby
+class MoviesController < ApplicationController
+  GET /movies
+  def index
+    @movies = Movie.all
+
+    # render is implicit here
+    # it will render the file in app/views/index.html.erb
+  end
+
+end
+```
+
+**Create a file app/views/movies/index.html.erb**
+
+```
+<ul>
+<% @movies.each do |movie| %>
+  <li><%=movie.name%> is <%=movie.length%> minutes long.</li>
+<% end %>
+</ul>
+
+```
+
+![Rails MVC](mvc_detailed-full.png)
+
 ### Show Action
 
 **Add this to the app/controllers/movies_controller.rb**
@@ -417,27 +464,3 @@ delete '/movies/:id', to: 'movies#delete'
 curl -X DELETE localhost:3000/movies/1
 ```
 
-## Don't forget CORS for Cross Brower Requests
-
-**In the Gemfile**
-
-```
-gem 'rack-cors', :require => 'rack/cors'
-```
-
-
-Don't forget to bundle install.
-
-
-**In the config/application.rb**
-
-```
- config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :patch, :put, :dele\
-te, :options]
-      end
-    end
-
-```
