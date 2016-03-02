@@ -1,7 +1,26 @@
 ![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
 
 ## Objectives
-* Create a CRUD Rails backend app that will act as an API, providing JSON representations of Movies.
+* Draw Diagrams that show the flow of a HTTP Requests and Responses and the how the Model, View and Controller interact.
+* Create a cheatsheet for all the Rails and Rack commands. 
+* Create a Rails backend app.
+* Review the file/directory structure for Rails.
+* Initialse the DB for this Rails application.
+* Start the Rails app and access it.
+* Create ActiveRecord Model.
+* Create a Migration.
+* Migrate the Rails DB.
+* Check the DB for the Table associated with the Model.
+* Create a Seed file that will populate the DB.
+* Populate the DB with this seed data.
+* Create a Controller and index action to view all the Models stored in the DB, persisted data.
+* Create a Route for the HTTP Request for a specific path.
+* Create a HTTP Request for this path and review it's results. JSON string.
+* Create hardcoded HTML in the Controller Action.
+* Use a View to generate HTML.
+* Show the Layout HTML that is invoked for all HTML.
+* Create a Controller show action to view one Model.
+* Create a View for to generate a representation of this Model.
 * Draw Diagrams that show the flow of a HTTP Requests and Responses and the how the Model, View and Controller interact.
 
 
@@ -42,8 +61,15 @@ $ gem install rails
 
 ### Create a Rails application.
 
+Create a Rails app that will use Postrgres for a DB
 ```
 $ rails new movies_crud_app -T --database=postgresql
+```
+
+If the above does NOT work then use the default SQLite DB.
+
+```
+$ rails new movies_crud_app -T 
 ```
 
 This will create a Rails application named movies_crud_app.
